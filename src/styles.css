@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+/* Asigură-te că întregul document ocupă 100% din înălțime */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Host pentru componenta principală */
+  :host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asigură că componenta ocupă întreaga înălțime a ferestrei */
+  }
+  
+  /* Main va ocupa tot spațiul disponibil */
+  main {
+    flex: 1; /* Permite expansiunea pentru a umple spațiul */
+  }
+  
+  /* Stiluri pentru footer */
+  footer {
+    background-color: #343a40; /* Exemplu de culoare pentru footer */
+    color: #fff; /* Culoarea textului */
+    padding: 1rem 0; /* Padding pentru footer */
+    width: 100%; /* Asigură că ocupă întreaga lățime */
+  }
+  
