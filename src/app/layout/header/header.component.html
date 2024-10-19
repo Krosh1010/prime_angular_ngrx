@@ -1,11 +1,56 @@
 <div class="container-fluid">
-    <nav class="navbar navbar-light bg-light fixed-top">
-      <div class="container">
-        <a class="navbar-brand" routerLink="/">
-          <img src="logo.png" alt="Extensive Digital" width="30" height="30" class="d-inline-block align-top" />
+  <nav class="navbar navbar-light bg-white fixed-top">
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <div class="d-flex align-items-center">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sidebar"
+          aria-controls="sidebar"
+          style="margin-left: 10px;" 
+        >
+          ☰
+        </button>
+        <a class="navbar-brand ms-2" routerLink="/" style="margin-left: 10px;">
+          <img
+            src="logo.png"
+            alt="Extensive Digital"
+            width="30"
+            height="30"
+            class="d-inline-block align-top me-2"
+          />
           Extensive Digital
         </a>
-        <button class="btn btn-outline-secondary" (click)="navigateToLogin()">Login</button>
       </div>
-    </nav>
+      <a 
+      routerLink="/login" 
+      style="margin-right: 15px; font-size: 18px; text-decoration: none;" 
+      onmouseover="this.style.color='blue';" 
+      onmouseout="this.style.color='black';">Login</a>  
+    </div>
+  </nav>
+  <!-- Sidebar -->
+  <div
+    class="offcanvas offcanvas-start"
+    tabindex="-1"
+    id="sidebar"
+    aria-labelledby="sidebarLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 id="sidebarLabel">Sidebar</h5>
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <a routerLink="/" class="list-group-item list-group-item-action">Home</a>
+      <a routerLink="/about" class="list-group-item list-group-item-action">About</a>
+      <a routerLink="/contact" class="list-group-item list-group-item-action">Contact</a>
+      <a routerLink="/settings" class="list-group-item list-group-item-action">Settings</a>
+    </div>
   </div>
+</div>

@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4" style="width: 400px;">
-      <h2 class="text-center mb-4">Sign Up</h2>
+    <div class="card p-5" style="width: 450px;">
+      <h2 class="text-left mb-4" style="font-size: 2.5rem; margin-bottom: 1rem;">Sign Up</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group mb-3">
-          <label for="email">Email</label>
+          <label for="email" class="fw-semibold">Email</label>
           <input 
             id="email" 
             formControlName="email" 
@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="form-group mb-3">
-          <label for="password">Password</label>
+          <label for="password" class="fw-semibold">Password</label>
           <input 
             id="password" 
             formControlName="password" 
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="form-group mb-3">
-          <label for="confirmPassword">Confirm Password</label>
+          <label for="confirmPassword" class="fw-semibold">Confirm Password</label>
           <input 
             id="confirmPassword" 
             formControlName="confirmPassword" 
@@ -52,14 +52,14 @@
         </div>
         <button 
           type="submit" 
-          class="btn btn-danger btn-block"
+          class="btn btn-danger btn-block w-100"
           [disabled]="registerForm.invalid || registerForm.hasError('passwordMismatch')"
         >
           Sign Up
         </button>
       </form>
       <div class="text-center mt-3">
-        <small>Already have an account? <a routerLink="/login">Sign in</a></small>
+        <small>Already have an account? <a routerLink="/login" style="text-decoration: none;">Sign in</a></small>
       </div>
     </div>
   </div>
