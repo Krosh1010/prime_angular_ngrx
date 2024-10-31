@@ -19,11 +19,24 @@ export class AuthEffects {
       ofType(login),
       switchMap(({ email, password }) =>
         this.authService.login(email, password).pipe(
-          map((response: AuthResponse) => loginSuccess({ token: response.token })),
-          tap(() => this.router.navigate(['/register'])),
-          catchError((error) => of(loginFailure({ error: error.message })))
+          map((response: AuthResponse) => loginSuccess({ token: response.token, email })), // Trece email-ul
+          catchError((error) => 
+            of(loginFailure({ error: 'Email sau parola incorectă.' }))
+          )
         )
       )
     )
+  );
+  
+  loginSuccessRedirect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(loginSuccess),
+        tap(() => {
+          console.log("Logat"); // Afișează mesajul de logare în consolă
+          this.router.navigate(['about']); 
+        })
+      ),
+    { dispatch: false } 
   );
 }

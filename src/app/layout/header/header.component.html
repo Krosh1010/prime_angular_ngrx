@@ -8,7 +8,7 @@
           data-bs-toggle="offcanvas"
           data-bs-target="#sidebar"
           aria-controls="sidebar"
-          style="margin-left: 10px;" 
+          style="margin-left: 10px;"
         >
           ☰
         </button>
@@ -23,34 +23,51 @@
           Extensive Digital
         </a>
       </div>
-      <a 
-      routerLink="/login" 
-      style="margin-right: 15px; font-size: 18px; text-decoration: none;" 
-      onmouseover="this.style.color='blue';" 
-      onmouseout="this.style.color='black';">Login</a>  
+      
+      <!-- User email display with dropdown menu for logout -->
+      <div 
+      class="position-relative" 
+      (mouseenter)="openDropdown()" 
+      (mouseleave)="closeDropdown()">
+    
+      <ng-container *ngIf="userInfo$ | async as userInfo">
+        <span 
+          class="btn btn-link text-decoration-none text-primary" 
+          (mouseenter)="isHovered = true" 
+          (mouseleave)="isHovered = false" 
+          style="font-size: 18px; cursor: pointer;">
+          {{ userInfo.email }}
+        </span>
+    
+        <div *ngIf="isDropdownOpen && userInfo.isLoggedIn"
+             class="dropdown-menu show position-absolute end-0" 
+             style="top: 100%; right: 10px; z-index: 1000;">
+          <button (click)="logout()" class="dropdown-item btn btn-danger">Logout</button>
+        </div>
+      </ng-container>
+    </div>
+    
+      <!-- Login button for non-authenticated users -->
+      <a *ngIf="!(userInfo$ | async)?.isLoggedIn" 
+         routerLink="/login" 
+         class="me-3" 
+         style="font-size: 18px; text-decoration: none;">
+         Login
+      </a>
     </div>
   </nav>
+
   <!-- Sidebar -->
-  <div
-    class="offcanvas offcanvas-start"
-    tabindex="-1"
-    id="sidebar"
-    aria-labelledby="sidebarLabel"
-  >
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
     <div class="offcanvas-header">
       <h5 id="sidebarLabel">Sidebar</h5>
-      <button
-        type="button"
-        class="btn-close text-reset"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-      ></button>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <a routerLink="/" class="list-group-item list-group-item-action">Home</a>
       <a routerLink="/about" class="list-group-item list-group-item-action">About</a>
-      <a routerLink="/contact" class="list-group-item list-group-item-action">Contact</a>
-      <a routerLink="/settings" class="list-group-item list-group-item-action">Settings</a>
+      <a routerLink="/login" class="list-group-item list-group-item-action">Login</a>
+      <a routerLink="/register" class="list-group-item list-group-item-action">register</a>
     </div>
   </div>
 </div>
