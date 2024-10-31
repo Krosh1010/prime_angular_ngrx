@@ -6,7 +6,8 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-
+import { authReducer } from './store/reducers/auth.reducers'; 
+import { AuthEffects } from './store/effects/auth.effects'; 
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,9 +15,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     ReactiveFormsModule,
     provideStore({
-     // Adaugă reducer-ele tale aici
+      auth: authReducer, 
     }),
-    provideEffects(), // Adaugă efectele tale aici
+    provideEffects([AuthEffects]), 
     provideRouterStore(),
     provideStoreDevtools(),
   ],

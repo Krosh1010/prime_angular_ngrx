@@ -1,10 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { routerReducer } from '@ngrx/router-store';
+import { importProvidersFrom } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';  
+import { appConfig } from './app/app.config'; 
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    appConfig.providers,
+    importProvidersFrom(HttpClientModule),  
+  ],
+}).catch(err => console.error('Error bootstrapping application:', err));

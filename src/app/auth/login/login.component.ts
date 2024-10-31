@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgIf,NgClass } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Router,RouterModule } from '@angular/router';
-import { navigate } from '../../store/action/router.actions';
+import { navigate } from '../../store/actions/router.actions';
 
 @Component({
   selector: 'app-login',
