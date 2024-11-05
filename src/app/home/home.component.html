@@ -1,2 +1,75 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-<h1>sasfsdf</h1></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+
+<!-- Thinner Navigation Bar Container -->
+<div class="nav-bar mt-5" *ngIf="currentComponent !== 'home'">
+  <div class="d-flex justify-content-between align-items-center border-bottom pb-2 position-relative">
+    <!-- Centered Navigation Buttons -->
+    <div class="btn-group mx-auto pe-1" role="group">
+      <button 
+        type="button" 
+        class="nav-btn" 
+        [ngClass]="{'active-tab': currentComponent === 'dataBase'}"
+        (click)="showComponent('dataBase')">
+        Datele de bază
+      </button>
+      <button 
+        type="button" 
+        class="nav-btn" 
+        [ngClass]="{'active-tab': currentComponent === 'importantIssues'}"
+        (click)="showComponent('importantIssues')">
+        Problemele importante
+      </button>
+      <button 
+        type="button" 
+        class="nav-btn" 
+        [ngClass]="{'active-tab': currentComponent === 'keywordIssues'}"
+        (click)="showComponent('keywordIssues')">
+        Keywords Overview
+      </button>
+    </div>
+
+    <!-- Right-aligned Copy Link Button -->
+    <button 
+      type="button" 
+      class="btn btn-link text-secondary d-flex align-items-center" 
+      (click)="copyLink()">
+      <i class="bi bi-clipboard me-1"></i> Copiați linkul pentru partajare
+    </button>
+  </div>
+</div>
+
+<!-- Conditional Components -->
+<app-data-base *ngIf="currentComponent === 'dataBase'"></app-data-base>
+<app-important-issues *ngIf="currentComponent === 'importantIssues'"></app-important-issues>
+<app-keyword-overview *ngIf="currentComponent === 'keywordIssues'"></app-keyword-overview>
+
+<div *ngIf="currentComponent === 'home'">
+  <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
+    <div class="text-center">
+      <h2 class="fw-bold">Analizează o pagină web</h2>
+      <p>Analizează în profunzime SEO-ul unei pagini web</p>
+    </div>
+    
+    <form [formGroup]="seoForm" (ngSubmit)="checkSeo()">
+      <div class="row mb-4" style="width: 100%;">
+        <div class="col-13 col-md-15"> 
+          <div class="input-group">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Introduceți link-ul" 
+              aria-label="Introduceți link-ul"
+              formControlName="url">
+            <button class="btn btn-primary" type="submit">Verifică SEO</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="urlError" class="text-danger">
+        {{ urlError }}
+      </div>
+    </form>
+  </div>
+</div>
+
+
+

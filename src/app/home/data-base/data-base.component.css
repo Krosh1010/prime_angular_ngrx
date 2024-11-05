@@ -1,0 +1,32 @@
+.seo-analysis {
+    max-width: 330px; /* Lățimea maximă pentru card */
+    margin-left: auto; /* Aliniază cardul la dreapta */
+    margin-right: 80px; /* Spațiu între card și marginea dreaptă */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 4rem; /* Redu umplutura pentru a face cardul mai mic */
+    height: auto; /* Ajustează înălțimea cardului pentru a fi mai compact */
+}
+
+#seoRadarChart {
+    width: 100%;
+    max-height: 180px; /* Scade înălțimea maximă a graficului */
+}
+
+.seo-scores p {
+    margin: 0.5rem 0;
+    font-weight: 500;
+    font-size: 0.9rem; /* Micșorează dimensiunea textului pentru un aspect mai compact */
+}
+
+.seo-scores p strong {
+    font-size: 0.8rem;
+}
+
+.seo-scores .col-6:first-child p strong {
+    color: #d4af37; /* Culoare aurie pentru primele două elemente */
+}
+
+.seo-scores .col-6:last-child p strong {
+    color: red; /* Culoare roșie pentru ultimele trei elemente */
+}
