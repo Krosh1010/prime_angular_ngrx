@@ -1,0 +1,23 @@
+
+{ 
+  "users": [
+    {
+      "id": "b7d9",
+      "email": "petru.altuhov@gmail.com",
+      "password": "1",
+      "token": "fake-jwt-token"
+    },
+    {
+      "id": "aaa1",
+      "email": "1@a.e",
+      "password": "1",
+      "token": "fake-jwt-token"
+    },
+    {
+      "id": "cdeb",
+      "email": "2@mail.ru",
+      "password": "1",
+      "token": "fake-jwt-token"
+    }
+  ]
+}

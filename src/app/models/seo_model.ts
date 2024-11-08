@@ -5,5 +5,7 @@ export interface SEOData {
     jsStart: number;
     interactive: number;
     mobile: number;
+    seoScore: number;
+    imageURL: string;
   }
   

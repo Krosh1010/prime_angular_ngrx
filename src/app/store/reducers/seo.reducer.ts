@@ -2,7 +2,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as SEOActions from '../actions/seo.action';
 import { SEOData } from '../../models/seo_model';
-import { MOCK_SEO_DATA } from '../mok.data/mok_seo_data';
+
 
 export interface SEOState {
   data: SEOData | null;
@@ -11,7 +11,7 @@ export interface SEOState {
 }
 
 export const initialState: SEOState = {
-  data: MOCK_SEO_DATA,
+  data: null,
   loading: false,
   error: null,
 };

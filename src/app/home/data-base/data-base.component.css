@@ -1,32 +1,76 @@
-.seo-analysis {
+.seo-card {
     max-width: 330px; /* Lățimea maximă pentru card */
-    margin-left: auto; /* Aliniază cardul la dreapta */
-    margin-right: 80px; /* Spațiu între card și marginea dreaptă */
     background-color: #f9f9f9;
     border-radius: 8px;
-    padding: 4rem; /* Redu umplutura pentru a face cardul mai mic */
-    height: auto; /* Ajustează înălțimea cardului pentru a fi mai compact */
+    padding: 2rem;
+    height: 330px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 15px; /* Adăugăm margini între carduri */
+}
+.seo-analysis {
+  max-width: 330px; /* Lățimea maximă pentru card */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 2rem;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 15px; /* Adăugăm margini între carduri */
+}
+
+/* Containerul pentru carduri pe același rând */
+.seo-container {
+  display: flex;
+  flex-wrap: nowrap; /* Împiedicăm cardurile să se împartă pe mai multe rânduri */
+  justify-content: space-between; /* Spațiu între carduri */
+  align-items: stretch; /* Asigură că toate cardurile au aceeași înălțime */
+  gap: 1rem;
+}
+
+#seoDoughnutChart {
+  max-width: 150px; /* Micșorăm dimensiunea graficului */
+  margin: 0 auto; /* Centrarea graficului */
+  height: 150px;
 }
 
 #seoRadarChart {
-    width: 100%;
-    max-height: 180px; /* Scade înălțimea maximă a graficului */
+  width: 100%;
+  max-height: 150px; /* Scade înălțimea maximă a graficului */
+  margin-bottom: 1rem;
+}
+
+.seo-scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between; /* Alinierea corectă a elementelor */
+}
+
+.seo-score-item {
+  flex: 1 1 45%; /* Fiecare item ocupă maxim 45% din lățimea containerului */
+  text-align: center;
 }
 
 .seo-scores p {
-    margin: 0.5rem 0;
-    font-weight: 500;
-    font-size: 0.9rem; /* Micșorează dimensiunea textului pentru un aspect mai compact */
+  margin: 0.5rem 0;
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 .seo-scores p strong {
-    font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
-.seo-scores .col-6:first-child p strong {
-    color: #d4af37; /* Culoare aurie pentru primele două elemente */
+.seo-scores .seo-score-item:first-child p strong {
+  color: #d4af37; /* Culoare aurie */
 }
 
-.seo-scores .col-6:last-child p strong {
-    color: red; /* Culoare roșie pentru ultimele trei elemente */
+.seo-scores .seo-score-item:last-child p strong {
+  color: #e74c3c; /* Culoare roșie */
+}
+.badge.bg-yellow {
+  background-color: #FFD700; /* Galben */
+}
+
+.badge.bg-success {
+  background-color: #28a745; /* Verde */
 }

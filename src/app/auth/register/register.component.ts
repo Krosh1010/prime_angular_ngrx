@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgIf,NgClass } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Router,RouterModule } from '@angular/router';
-import { navigate } from '../../store/actions/router.actions';
+import { register } from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-register',
@@ -35,8 +35,9 @@ export class RegisterComponent {
   }
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-     
+      const { email, password } = this.registerForm.value;
+      console.log('Form data:', { email, password }); // Verifică datele din formular
+      this.store.dispatch(register({ email, password }));
     }
   }
 }

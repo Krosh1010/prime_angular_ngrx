@@ -8,7 +8,7 @@ import { SEOData } from '../models/seo_model';
   providedIn: 'root'
 })
 export class SEOService {
-  private apiUrl = 'https://example.com/api/seo-data';
+  private apiUrl = 'http://localhost:3000/seoData'; 
 
   constructor(private http: HttpClient) {}
 

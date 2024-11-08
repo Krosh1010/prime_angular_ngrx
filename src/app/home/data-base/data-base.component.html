@@ -1,8 +1,27 @@
-<div class="seo-analysis card p-2">
+
+<div class="seo-container">
+  <div class="seo-card card p-3 my-3">
+    <h4 class="text-center">Scor SEO</h4>
+    <canvas id="seoDoughnutChart" class="mx-auto my-3" width="150" height="150"></canvas>
+    <div class="legend text-center my-2">
+      <span class="badge bg-danger">0-25</span>
+      <span class="badge bg-warning">26-50</span>
+      <span class="badge bg-yellow">51-75</span>
+      <span class="badge bg-success">76-100</span>
+    </div>
+    <p class="text-center">
+      Viteza paginii dvs. este de {{ seoScore }}% din optim.
+    </p>
+  </div>
+<!-- Adaugă această secțiune pentru afișarea imaginii -->
+<div class="seo-image-container text-center">
+  <img *ngIf="(seoData$ | async)?.imageURL" [src]="(seoData$ | async)?.imageURL" alt="SEO Image" class="img-fluid"/>
+</div>
+  <div class="seo-analysis card p-2">
     <h4 class="text-center">Analiza Categoriilor SEO</h4>
     <canvas id="seoRadarChart" class="mx-auto my-3"></canvas>
-    <div class="seo-scores row text-center">
-      <div class="col-6">
+    <div class="seo-scores d-flex justify-content-between text-center">
+      <div class="seo-score-item">
         <p>
           <strong [ngStyle]="{'color': getColor((seoData$ | async)?.loadingOptimization)}">Optimizarea Încărcăturii:</strong>
           {{ (seoData$ | async)?.loadingOptimization }}%
@@ -12,7 +31,7 @@
           {{ (seoData$ | async)?.desktop }}%
         </p>
       </div>
-      <div class="col-6">
+      <div class="seo-score-item">
         <p>
           <strong [ngStyle]="{'color': getColor((seoData$ | async)?.jsStart)}">Pornire JS:</strong>
           {{ (seoData$ | async)?.jsStart }}%
@@ -28,5 +47,4 @@
       </div>
     </div>
   </div>
-  
-  
+</div>

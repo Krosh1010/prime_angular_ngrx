@@ -5,7 +5,9 @@ import { SEOData } from '../../models/seo_model';
 import { selectSEOData } from '../../store/selectors/seo.selectors';
 import { loadSEOData } from '../../store/actions/seo.action';
 import { CommonModule } from '@angular/common';
-import { Chart } from 'chart.js/auto';
+import { Chart, ChartConfiguration } from 'chart.js/auto';
+import { DoughnutChartService } from './SeoAnaliz/seoScore';
+import { RadarChartService } from './SeoAnaliz/seoRadar';
 
 @Component({
   selector: 'app-data-base',
@@ -18,8 +20,13 @@ export class DataBaseComponent implements OnInit, OnDestroy {
   seoData$: Observable<SEOData | null>;
   chart: Chart | null = null;
   private seoDataSubscription: Subscription | null = null;
+  doughnutChart: Chart | null = null;
+  seoScore: number = 0;
 
-  constructor(private store: Store) {
+  constructor(private store: Store,
+    private doughnutChartService: DoughnutChartService,
+    private radarChartService: RadarChartService
+  ) {
     this.seoData$ = this.store.select(selectSEOData);
   }
 
@@ -30,6 +37,7 @@ export class DataBaseComponent implements OnInit, OnDestroy {
     this.seoDataSubscription = this.seoData$.subscribe(data => {
       if (data) {
         this.createRadarChart(data);
+        this.createDoughnutChart(data);
       }
     });
   }
@@ -42,6 +50,9 @@ export class DataBaseComponent implements OnInit, OnDestroy {
     if (this.seoDataSubscription) {
       this.seoDataSubscription.unsubscribe();
     }
+    if (this.doughnutChart) {
+      this.doughnutChart.destroy(); // Clean up the doughnut chart
+    }
   }
   getColor(value: number | undefined | null): string {
     if (value === null || value === undefined) return 'black'; // Default color for undefined values
@@ -50,52 +61,26 @@ export class DataBaseComponent implements OnInit, OnDestroy {
     return 'green';
   }
   
-  
+  createDoughnutChart(data: SEOData): void {
+    const ctx = document.getElementById('seoDoughnutChart') as HTMLCanvasElement;
+    this.seoScore = data.seoScore ?? 0;
+
+    // Folosim serviciul pentru a crea graficul
+    this.doughnutChartService.createDoughnutChart(ctx, this.seoScore);
+  }
+
   createRadarChart(data: SEOData): void {
     const ctx = document.getElementById('seoRadarChart') as HTMLCanvasElement;
+
+    // Curățăm graficul existent, dacă există
+    if (this.chart) {
+      this.chart.destroy();
+    }
+
+    // Folosim serviciul pentru a crea graficul radar
+    this.chart = this.radarChartService.createRadarChart(ctx, data);
   
-    // Destroy existing chart to avoid duplication
-    this.chart?.destroy();
-  
-    this.chart = new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: ['Optimizarea Încărcăturii', 'Desktop', 'Pornire JS', 'Interactiv', 'Mobile'],
-        datasets: [{
-          data: [
-            data.loadingOptimization,
-            data.desktop,
-            data.jsStart,
-            data.interactive,
-            data.mobile
-          ],
-          backgroundColor: 'rgba(128, 128, 255, 0.2)',
-          borderColor: 'rgba(128, 128, 255, 0.6)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        plugins: { legend: { display: false } },
-        scales: {
-          r: {
-            angleLines: { color: '#ddd' },
-            grid: { color: '#ddd' },
-            suggestedMin: 0,
-            suggestedMax: 100,
-            ticks: {
-              display: true,
-              color: '#666',
-              font: { size: 10, family: 'Arial, sans-serif' },
-              backdropColor: 'transparent'
-            },
-            pointLabels: {
-              font: { size: 12, family: 'Arial, sans-serif', weight: 'bold' },
-              color: '#666'
-            }
-          }
-        }
-      }
-    });
   }
+  
   
 }
