@@ -1,29 +1,95 @@
+<!-- Buton pentru a deschide popup-ul --> <br>
+<div class="d-flex justify-content-end pe-5 ms-auto">
+  <button type="button" class="btn btn-primary me-2 rounded-pill btn-lg" (click)="openCountry()">Solicita oferta specializată</button>
+  <button type="button" class="btn btn-secondary rounded-pill btn-lg" (click)="openRaport()">
+      <i class="bi bi-cloud-arrow-down"></i> Descarcati Raportul
+  </button>
+</div>
+<!-- Modal pentru trimiterea unui email -->
+<div class="modal fade" id="customRaport" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="customModalLabel">Pentru descarcarea raportului, introduceti adresa de mail</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="emailAddress" class="form-label"></label>
+            <div class="input-group">
+              <input type="email" class="form-control" id="emailAddress" placeholder="name@example.com" [(ngModel)]="emailAddress" name="emailAddress" required>
+              <button type="submit" class="btn btn-primary">Expediază</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Structura modală -->
+<div class="modal fade" id="customCountry" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="customModalLabel" >Lăsați un număr de telefon pentru a obține mai multe facilități!</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="phoneNumber" class="form-label"></label>
+            <div class="input-group">
+              <div class="dropdown-container d-flex align-items-center">
+                <div class="selected-option" (click)="toggleDropdown()">
+                  <!-- Doar steagul este afișat aici, fără codul țării -->
+                  <img *ngIf="selectedCountry && selectedCountry.flag" [src]="selectedCountry.flag" width="20" height="15" alt="{{ selectedCountry.name }}">
+                  <!-- Săgeată care se rotește -->
+                  <span class="dropdown-arrow" [class.open]="dropdownOpen">&#9660;</span>
+                </div>
+                <div class="dropdown-options" *ngIf="dropdownOpen">
+                  <div *ngFor="let country of countryCodes" class="dropdown-option" (click)="selectCountry(country)">
+                    <img *ngIf="country.flag" [src]="country.flag" width="20" height="15" alt="{{ country.name }}" class="me-2">
+                    {{ country.name }} ({{ country.code }})
+                  </div>
+                </div>
+              </div>
+              <input type="tel" class="form-control" id="phoneNumber"  [(ngModel)]="phoneNumber" name="phoneNumber" required>
+              <button type="submit" class="btn btn-primary">Expediază</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
 <div class="seo-container">
   <div class="seo-card card p-3 my-3">
-    <h4 class="text-center">Scor SEO</h4>
-    <canvas id="seoDoughnutChart" class="mx-auto my-3" width="150" height="150"></canvas>
+    <br>
+    <h4 class="text-center">Scor SEO</h4> <br>
+    <canvas id="seoDoughnutChart" class="mx-auto my-3" ></canvas>
     <div class="legend text-center my-2">
       <span class="badge bg-danger">0-25</span>
       <span class="badge bg-warning">26-50</span>
       <span class="badge bg-yellow">51-75</span>
       <span class="badge bg-success">76-100</span>
-    </div>
+    </div> <br> <br><br>
     <p class="text-center">
       Viteza paginii dvs. este de {{ seoScore }}% din optim.
     </p>
   </div>
-<!-- Adaugă această secțiune pentru afișarea imaginii -->
-<div class="seo-image-container text-center">
-  <img *ngIf="(seoData$ | async)?.imageURL" [src]="(seoData$ | async)?.imageURL" alt="SEO Image" class="img-fluid"/>
-</div>
-  <div class="seo-analysis card p-2">
+  <div class="seo-image-container text-center my-3 card"><div class="text-center"><h4 class="text-center"> Previzualizare site</h4> <br>
+    <img *ngIf="(seoData$ | async)?.imageURL" [src]="(seoData$ | async)?.imageURL" alt="Preview Site SEO" class="seo-preview img-fluid"/>
+  </div></div>
+  <div class="seo-analysis card p-3 my-3"> <br>
     <h4 class="text-center">Analiza Categoriilor SEO</h4>
-    <canvas id="seoRadarChart" class="mx-auto my-3"></canvas>
+    <canvas id="seoRadarChart" class="mx-auto my-3" ></canvas> <br>
     <div class="seo-scores d-flex justify-content-between text-center">
-      <div class="seo-score-item">
+      <div class="seo-score-item small">
         <p>
-          <strong [ngStyle]="{'color': getColor((seoData$ | async)?.loadingOptimization)}">Optimizarea Încărcăturii:</strong>
+          <strong [ngStyle]="{'color': getColor((seoData$ | async)?.loadingOptimization)}">Optimizarea Încărcării:</strong>
           {{ (seoData$ | async)?.loadingOptimization }}%
         </p>
         <p>

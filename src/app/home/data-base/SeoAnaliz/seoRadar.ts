@@ -39,7 +39,7 @@ export class RadarChartService {
               color: '#666',
               font: { size: 10, family: 'Arial, sans-serif' },
               backdropColor: 'transparent',
-              stepSize: 10
+              stepSize: 25
             },
             pointLabels: {
               font: { size: 12, family: 'Arial, sans-serif', weight: 'bold' },

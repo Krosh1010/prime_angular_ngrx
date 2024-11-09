@@ -1,40 +1,42 @@
 .seo-card {
-    max-width: 330px; /* Lățimea maximă pentru card */
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 2rem;
-    height: 330px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 0 15px; /* Adăugăm margini între carduri */
-}
-.seo-analysis {
-  max-width: 330px; /* Lățimea maximă pentru card */
+  width: 380px;
   background-color: #f9f9f9;
   border-radius: 8px;
   padding: 2rem;
-  height: auto;
+  height: 450px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 15px; /* Adăugăm margini între carduri */
+  margin: 0 15px;
+  transform: translateX(35px);
 }
 
-/* Containerul pentru carduri pe același rând */
+.seo-analysis {
+  width: 380px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 2rem;
+  height: 450px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 15px;
+  transform: translateX(-35px);
+}
+
 .seo-container {
   display: flex;
-  flex-wrap: nowrap; /* Împiedicăm cardurile să se împartă pe mai multe rânduri */
-  justify-content: space-between; /* Spațiu între carduri */
-  align-items: stretch; /* Asigură că toate cardurile au aceeași înălțime */
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
   gap: 1rem;
 }
 
 #seoDoughnutChart {
-  max-width: 150px; /* Micșorăm dimensiunea graficului */
-  margin: 0 auto; /* Centrarea graficului */
+  max-width: 150px;
+  margin: 0 auto;
   height: 150px;
 }
 
 #seoRadarChart {
   width: 100%;
-  max-height: 150px; /* Scade înălțimea maximă a graficului */
+  max-height: 210px;
   margin-bottom: 1rem;
 }
 
@@ -42,35 +44,163 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  justify-content: space-between; /* Alinierea corectă a elementelor */
+  justify-content: space-between;
 }
 
 .seo-score-item {
-  flex: 1 1 45%; /* Fiecare item ocupă maxim 45% din lățimea containerului */
+  flex: 1 1 45%;
   text-align: center;
 }
 
 .seo-scores p {
   margin: 0.5rem 0;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .seo-scores p strong {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .seo-scores .seo-score-item:first-child p strong {
-  color: #d4af37; /* Culoare aurie */
+  color: #d4af37;
 }
 
 .seo-scores .seo-score-item:last-child p strong {
-  color: #e74c3c; /* Culoare roșie */
+  color: #e74c3c;
 }
+
 .badge.bg-yellow {
-  background-color: #FFD700; /* Galben */
+  background-color: #FFD700;
 }
 
 .badge.bg-success {
-  background-color: #28a745; /* Verde */
+  background-color: #28a745;
+}
+
+.seo-image-container {
+  width: 620px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  height: 450px;
+}
+
+.seo-preview {
+  border-radius: 12px;
+  width: 400px;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Stiluri pentru dropdown */
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 8px;
+  border: 1px solid #ced4da;
+  border-radius: 5px 0 0 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-left: 1px solid #ced4da; 
+  padding-left: 0; /* Asigură-te că nu există padding care să acopere marginea stângă */
+  margin-left: 0;
+}
+
+.selected-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 10px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+}
+.selected-option:hover {
+  background-color: #c6c6c6; /* Fundal mai închis la hover */
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.dropdown-option {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-option img {
+  margin-right: 5px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  border: 1px solid #ced4da; /* Adaugă bordură pentru tot grupul de input */
+  border-radius: 5px; /* Păstrează border-radius pentru input și buton */
+}
+
+.form-control {
+  border-radius: 0 5px 5px 0;
+  height: 38px;
+  margin-left: 0px;
+  border-left: 1px solid #ced4da
+}
+
+.input-group input {
+  height: 38px;
+  box-sizing: border-box;
+  border-left: none;
+}
+
+.dropdown-arrow {
+  margin-left: 8px;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-container.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-container.open .dropdown-options {
+  display: block;
+}
+#customModal .modal-dialog {
+  width: 700px; /* Modifică această valoare pentru a obține lățimea dorită */
+}
+
+#customModalLabel {
+  text-align: center;  /* Center text */
+  margin: 0 auto;      /* Optional: ensures it remains centered even if content grows */
+}
+.modal-header {
+  border-bottom: none; /* Elimină bordura de sub header */
+  margin-bottom: 0; /* Elimină eventualele margini */
+}
+
+.modal-body {
+  padding-top: 0; /* Ajustează padding-ul dacă este necesar */
 }

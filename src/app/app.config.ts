@@ -11,6 +11,8 @@ import { AuthEffects } from './store/effects/auth.effects';
 import { SEOEfects } from './store/effects/seo.effects';
 import { seoReducer } from './store/reducers/seo.reducer';
 
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
