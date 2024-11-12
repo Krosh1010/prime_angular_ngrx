@@ -7,38 +7,54 @@ export interface AuthState {
   email: string | null;
 }
 
-const initialState: AuthState = {
-  token: null,
-  error: null,
-  email: null,
-};
+// auth.reducer.ts
+const initialState: AuthState = initializeAuthState();
+
+export function initializeAuthState(): AuthState {
+  const token = localStorage.getItem('token');
+  const email = localStorage.getItem('email');
+  if (token && email) {
+    return {
+      token,
+      email,
+      error: null,
+    };
+  }
+  return {
+    token: null,
+    email: null,
+    error: null,
+  };
+}
 
 export const authReducer = createReducer(
   initialState,
-  on(loginSuccess, (state, { token, email }) => ({
-    ...state,
-    token,
-    email,
-    error: null,
-  })),
+  on(loginSuccess, registerSuccess, (state, { token, email }) => {
+    // Salvăm token-ul și email-ul în localStorage
+    localStorage.setItem('token', token);
+    localStorage.setItem('email', email);
+    return {
+      ...state,
+      token,
+      email,
+      error: null,
+    };
+  }),
   on(loginFailure, registerFailure, (state, { error }) => ({
     ...state,
     error,
   })),
-  on(registerSuccess, (state, { token, email }) => ({
-    ...state,
-    token,
-    email,
-    error: null,
-  })),
-  on(registerFailure, (state, { error }) => ({
-    ...state,
-    error,
-  })),
-  on(logout, (state) => ({
-    ...state,
-    token: null,
-    email: null,
-    error: null,
-  }))
+  on(logout, (state) => {
+    // Eliminăm token-ul și email-ul din localStorage la logout
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    return {
+      ...state,
+      token: null,
+      email: null,
+      error: null,
+    };
+  })
 );
+
+

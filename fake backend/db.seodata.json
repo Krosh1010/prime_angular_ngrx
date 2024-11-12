@@ -1,12 +1,13 @@
 {
     "seoData": {
-      "loadingOptimization": 20,
+      "loadingOptimization": 100,
       "desktop": 50,
-      "jsStart": 90,
+      "jsStart": 50,
       "interactive": 81,
-      "mobile": 65,
-      "seoScore": 0,
-      "imageURL": "https://tlum.ru/uploads/d6d38ebcf8548d81eb1f4dc3a54ed4d62f98301b8418d226ad19c2ccb440f412.jpeg"
+      "mobile": 10,
+      "seoScore": 50,
+      "imageURL": "https://tlum.ru/uploads/d6d38ebcf8548d81eb1f4dc3a54ed4d62f98301b8418d226ad19c2ccb440f412.jpeg",
+      "imageURLL": "https://i.pinimg.com/originals/44/27/61/442761f2d191c0ea7511c73bd2e29e68.jpg"
     }
   }
   

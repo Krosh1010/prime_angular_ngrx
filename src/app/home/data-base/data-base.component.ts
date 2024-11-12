@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { SEOData } from '../../models/seo_model';
@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './data-base.component.html',
   styleUrls: ['./data-base.component.css']
 })
-export class DataBaseComponent implements OnInit, OnDestroy {
+export class DataBaseComponent implements OnInit, OnDestroy, OnChanges {
   seoData$: Observable<SEOData | null>;
   chart: Chart | null = null;
   private seoDataSubscription: Subscription | null = null;
@@ -31,6 +31,8 @@ export class DataBaseComponent implements OnInit, OnDestroy {
   selectedCountry: { code: string; name: string; flag: string } | null = null;
   dropdownOpen = false;
   emailAddress: string = '';
+  @Input() siteLink: string = ''; // Link-ul primit din HomeComponent
+  @Input() siteName: string = ''; // Denumirea site-ului
 
   constructor(
     private store: Store,
@@ -40,8 +42,20 @@ export class DataBaseComponent implements OnInit, OnDestroy {
   ) {
     this.seoData$ = this.store.select(selectSEOData);
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['siteName'] && changes['siteName'].currentValue) {
+      this.siteName = changes['siteName'].currentValue;
+      localStorage.setItem('siteName', this.siteName);
+    }
+    if (changes['siteLink'] && changes['siteLink'].currentValue) {
+      this.siteLink = changes['siteLink'].currentValue;
+      localStorage.setItem('siteLink', this.siteLink);
+    }
+  }
 
   ngOnInit(): void {
+    this.siteName = localStorage.getItem('siteName') || this.siteName;
+    this.siteLink = localStorage.getItem('siteLink') || this.siteLink;
     this.store.dispatch(loadSEOData());
 
     this.seoDataSubscription = this.seoData$.subscribe(data => {
@@ -62,6 +76,12 @@ export class DataBaseComponent implements OnInit, OnDestroy {
 
       this.selectedCountry = this.countryCodes.find(country => country.code === this.selectedCountryCode) || null;
     });
+  }
+  updateSiteData(name: string, link: string): void {
+    this.siteName = name;
+    this.siteLink = link;
+    localStorage.setItem('siteName', this.siteName);
+    localStorage.setItem('siteLink', this.siteLink);
   }
   toggleDropdown(): void {
     this.dropdownOpen = !this.dropdownOpen;
@@ -132,4 +152,5 @@ export class DataBaseComponent implements OnInit, OnDestroy {
     }
     this.chart = this.radarChartService.createRadarChart(ctx, data);
   }
+  
 }

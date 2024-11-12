@@ -7,5 +7,12 @@ export interface SEOData {
     mobile: number;
     seoScore: number;
     imageURL: string;
+    imageURLL: string;
+    lcp: number;
+    srt: number;
+    cls: number;
+    firstContentfulPaint: number;
+    speedIndex: number;
+    totalBlockingTime: number;
   }
   

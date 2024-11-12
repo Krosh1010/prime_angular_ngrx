@@ -1,10 +1,24 @@
-<!-- Buton pentru a deschide popup-ul --> <br>
+<br>
 <div class="d-flex justify-content-end pe-5 ms-auto">
-  <button type="button" class="btn btn-primary me-2 rounded-pill btn-lg" (click)="openCountry()">Solicita oferta specializată</button>
-  <button type="button" class="btn btn-secondary rounded-pill btn-lg" (click)="openRaport()">
-      <i class="bi bi-cloud-arrow-down"></i> Descarcati Raportul
-  </button>
+  <div class="seo-image-wrapper" style="margin-left: 50px;">
+    <img *ngIf="(seoData$ | async)?.imageURLL" [src]="(seoData$ | async)?.imageURLL" alt="Preview Site SEO" class="seo-previeww" />
+  </div>
+  <div class="seo-text-content" style="margin-left: 21px;">
+    <h4 class="site-name" >{{ siteName }}</h4>
+    <a [href]="siteLink" target="_blank" style="color: #535151;">{{ siteLink }}</a>
+  </div>
+  
+
+  <!-- Container pentru butoane centrate cu margine sus -->
+  <div class="d-flex justify-content-end w-100 ms-3" style="margin-top: 10px;">
+    <button type="button" class="btn btn-primary me-2 rounded-pill btn-lg btn-sm" style="width: 270px;" (click)="openCountry()">Solicita oferta specializată</button>
+    <button type="button" class="btn btn-secondary rounded-pill btn-lg btn-sm"  style="width: 220px;"(click)="openRaport()">
+      <i class="bi bi-cloud-arrow-down"></i> Descarca Raportul
+    </button>
+  </div>
 </div>
+
+
 <!-- Modal pentru trimiterea unui email -->
 <div class="modal fade" id="customRaport" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -64,7 +78,6 @@
     </div>
   </div>
 </div>
-<br>
 <div class="seo-container">
   <div class="seo-card card p-3 my-3">
     <br>

@@ -33,7 +33,9 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(registerSuccess),
-        tap(() => this.router.navigate(['login'])) // Redirecționează utilizatorul către pagina de login
+        tap(() => {
+          this.router.navigate(['']);
+        })
       ),
     { dispatch: false }
   );
@@ -56,7 +58,9 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(loginSuccess),
-        tap(() => this.router.navigate(['about']))
+        tap(() => {
+          this.router.navigate(['about']);
+        })
       ),
     { dispatch: false }
   );

@@ -1,5 +1,4 @@
-
-{ 
+{
   "users": [
     {
       "id": "b7d9",
@@ -17,7 +16,20 @@
       "id": "cdeb",
       "email": "2@mail.ru",
       "password": "1",
+      "token": "fake-jet-token"
+    },
+    {
+      "id": "2202",
+      "email": "3@mail.ru",
+      "password": "1",
+      "token": "fake-jwt-token"
+    },
+    {
+      "id": "6f29",
+      "email": "4@mail.ru",
+      "password": "2",
       "token": "fake-jwt-token"
     }
   ]
+  
 }

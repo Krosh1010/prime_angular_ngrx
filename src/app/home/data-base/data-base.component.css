@@ -204,3 +204,34 @@
 .modal-body {
   padding-top: 0; /* Ajustează padding-ul dacă este necesar */
 }
+.seo-image-wrapper {
+  display: flex;
+  align-items: center; /* Aliniere pe verticală */
+  justify-content: center; /* Aliniere pe orizontală */
+  width: 60px;
+  height: 60px;
+  padding: 1rem;
+  background-color: #f7f9fc;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.seo-previeww {
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 8px;
+}
+.seo-text-content {
+  margin-right: auto; /* Pentru a menține alinierea corectă */
+}
+.site-name {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.btn-sm {
+  padding: 0.35rem 1rem; /* Ajustează padding-ul */
+  font-size: 1.1rem; /* Ajustează font-ul */
+  height: 40px;
+  font-weight: bold;
+}
+

@@ -1,4 +1,4 @@
-// src/app/store/seo.reducer.ts
+
 import { createReducer, on } from '@ngrx/store';
 import * as SEOActions from '../actions/seo.action';
 import { SEOData } from '../../models/seo_model';
