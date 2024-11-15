@@ -8,11 +8,12 @@ export interface SEOData {
     seoScore: number;
     imageURL: string;
     imageURLL: string;
-    lcp: number;
-    srt: number;
-    cls: number;
-    firstContentfulPaint: number;
-    speedIndex: number;
-    totalBlockingTime: number;
+    LCP: number;
+    SRT: number;
+    CLS: number;
+    FCP: number;
+    SI: number;
+    TTI: number;
+    TBT: number;
   }
   

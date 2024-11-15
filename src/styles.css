@@ -23,4 +23,6 @@ html, body {
     padding: 1rem 0; /* Padding pentru footer */
     width: 100%; /* Asigură că ocupă întreaga lățime */
   }
+  @import "~bootstrap-icons/font/bootstrap-icons.css";
+
   

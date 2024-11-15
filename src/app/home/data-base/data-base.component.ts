@@ -4,22 +4,27 @@ import { Observable, Subscription } from 'rxjs';
 import { SEOData } from '../../models/seo_model';
 import { selectSEOData } from '../../store/selectors/seo.selectors';
 import { loadSEOData } from '../../store/actions/seo.action';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Chart } from 'chart.js/auto';
 import { DoughnutChartService } from './SeoAnaliz/seoScore';
 import { RadarChartService } from './SeoAnaliz/seoRadar';
 import * as bootstrap from 'bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UxComponent } from "./ux/ux.component";
+import { ImportantIssuesComponent } from '../important-issues/important-issues.component';
+import { KeywordOverviewComponent } from '../keyword-overview/keyword-overview.component';
+import { LinkService } from '../../services/link.service';
+
 
 @Component({
   selector: 'app-data-base',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, UxComponent,NgIf, ImportantIssuesComponent, KeywordOverviewComponent],
   templateUrl: './data-base.component.html',
   styleUrls: ['./data-base.component.css']
 })
-export class DataBaseComponent implements OnInit, OnDestroy, OnChanges {
+export class DataBaseComponent implements OnInit, OnDestroy {
   seoData$: Observable<SEOData | null>;
   chart: Chart | null = null;
   private seoDataSubscription: Subscription | null = null;
@@ -31,31 +36,33 @@ export class DataBaseComponent implements OnInit, OnDestroy, OnChanges {
   selectedCountry: { code: string; name: string; flag: string } | null = null;
   dropdownOpen = false;
   emailAddress: string = '';
-  @Input() siteLink: string = ''; // Link-ul primit din HomeComponent
-  @Input() siteName: string = ''; // Denumirea site-ului
+  currentComponent: string = 'dataBase';
+  private subscriptions: Subscription[] = [];
+  @Input() siteLinkChange: string = ''; // Link-ul primit din HomeComponent
+  @Input() siteNameChange: string = ''; // Denumirea site-ului
+
 
   constructor(
     private store: Store,
     private doughnutChartService: DoughnutChartService,
     private radarChartService: RadarChartService,
-    private http: HttpClient
+    private http: HttpClient,
+    private linkService: LinkService
   ) {
     this.seoData$ = this.store.select(selectSEOData);
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['siteName'] && changes['siteName'].currentValue) {
-      this.siteName = changes['siteName'].currentValue;
-      localStorage.setItem('siteName', this.siteName);
-    }
-    if (changes['siteLink'] && changes['siteLink'].currentValue) {
-      this.siteLink = changes['siteLink'].currentValue;
-      localStorage.setItem('siteLink', this.siteLink);
-    }
-  }
 
   ngOnInit(): void {
-    this.siteName = localStorage.getItem('siteName') || this.siteName;
-    this.siteLink = localStorage.getItem('siteLink') || this.siteLink;
+    const savedComponent = localStorage.getItem('currentComponent');
+    this.currentComponent = savedComponent ? savedComponent : 'dataBase';
+    this.subscriptions.push(
+      this.linkService.siteLink$.subscribe(link => {
+        this.siteLinkChange = link;
+      }),
+      this.linkService.siteName$.subscribe(name => {
+        this.siteNameChange = name;
+      })
+    );
     this.store.dispatch(loadSEOData());
 
     this.seoDataSubscription = this.seoData$.subscribe(data => {
@@ -76,12 +83,13 @@ export class DataBaseComponent implements OnInit, OnDestroy, OnChanges {
 
       this.selectedCountry = this.countryCodes.find(country => country.code === this.selectedCountryCode) || null;
     });
+    
   }
   updateSiteData(name: string, link: string): void {
-    this.siteName = name;
-    this.siteLink = link;
-    localStorage.setItem('siteName', this.siteName);
-    localStorage.setItem('siteLink', this.siteLink);
+    this.siteNameChange = name;
+    this.siteLinkChange = link;
+    localStorage.setItem('siteNameChange', this.siteNameChange);
+    localStorage.setItem('siteLinkChange', this.siteLinkChange);
   }
   toggleDropdown(): void {
     this.dropdownOpen = !this.dropdownOpen;
@@ -130,6 +138,7 @@ export class DataBaseComponent implements OnInit, OnDestroy, OnChanges {
     if (this.doughnutChart) {
       this.doughnutChart.destroy();
     }
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   getColor(value: number | undefined | null): string {
@@ -141,6 +150,9 @@ export class DataBaseComponent implements OnInit, OnDestroy, OnChanges {
 
   createDoughnutChart(data: SEOData): void {
     const ctx = document.getElementById('seoDoughnutChart') as HTMLCanvasElement;
+    if (this.doughnutChart) {
+      this.doughnutChart.destroy(); // Distruge graficul anterior, dacă există
+    }
     this.seoScore = data.seoScore ?? 0;
     this.doughnutChartService.createDoughnutChart(ctx, this.seoScore);
   }
@@ -152,5 +164,13 @@ export class DataBaseComponent implements OnInit, OnDestroy, OnChanges {
     }
     this.chart = this.radarChartService.createRadarChart(ctx, data);
   }
-  
+  copyLink() {
+    const link = window.location.href; // Get the current link
+    navigator.clipboard.writeText(link); // Copy the link to clipboard
+  }
+  showComponent(component: string) {
+    this.currentComponent = component;
+    localStorage.setItem('currentComponent', component);
+  }
+
 }

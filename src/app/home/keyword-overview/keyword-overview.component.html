@@ -1,2 +1,11 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <h1>keyword</h1></div>
+<br>
+<div class="d-flex justify-content-end pe-5 ms-auto">
+    <div class="seo-image-wrapper" style="margin-left: 50px;">
+      <img *ngIf="(seoData$ | async)?.imageURLL" [src]="(seoData$ | async)?.imageURLL" alt="Preview Site SEO" class="seo-previeww" />
+    </div>
+    <div class="seo-text-content" style="margin-left: 21px;">
+      <h4 class="site-name" >{{ siteNameChange }}</h4>
+      <a [href]="siteLinkChange" target="_blank" style="color: #535151;">{{ siteLinkChange }}</a>
+    </div>
+</div>
+<br>

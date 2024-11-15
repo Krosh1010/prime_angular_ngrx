@@ -1,11 +1,50 @@
+
+<div class="nav-bar mt-5" >
+  <div class="d-flex justify-content-between align-items-center border-bottom pb-2 position-relative">
+    <!-- Navigation Buttons, using margin-left to move to the right -->
+    <div class="btn-group" role="group" style="margin-left: 500px;">
+      <button 
+        type="button" 
+        class="nav-btn" 
+        [ngClass]="{'active-tab': currentComponent === 'dataBase'}"
+        (click)="showComponent('dataBase')">
+        Datele de bază
+      </button>
+      <button 
+        type="button" 
+        class="nav-btn" 
+        [ngClass]="{'active-tab': currentComponent === 'importantIssues'}"
+        (click)="showComponent('importantIssues')">
+        Problemele importante
+      </button>
+      <button 
+        type="button" 
+        class="nav-btn" 
+        [ngClass]="{'active-tab': currentComponent === 'keywordIssues'}"
+        (click)="showComponent('keywordIssues')">
+        Keywords Overview
+      </button>
+    </div>
+
+    <!-- Right-aligned Copy Link Button -->
+    <button 
+      type="button" 
+      class="btn btn-link text-secondary d-flex align-items-center" 
+      (click)="copyLink()"
+      style="margin-right: 50px;">
+      <i class="bi bi-clipboard me-1"></i> Copiați linkul pentru partajare
+    </button>
+  </div>
+</div>
+<div *ngIf="currentComponent === 'dataBase'">
 <br>
 <div class="d-flex justify-content-end pe-5 ms-auto">
   <div class="seo-image-wrapper" style="margin-left: 50px;">
     <img *ngIf="(seoData$ | async)?.imageURLL" [src]="(seoData$ | async)?.imageURLL" alt="Preview Site SEO" class="seo-previeww" />
   </div>
   <div class="seo-text-content" style="margin-left: 21px;">
-    <h4 class="site-name" >{{ siteName }}</h4>
-    <a [href]="siteLink" target="_blank" style="color: #535151;">{{ siteLink }}</a>
+    <h4 class="site-name" >{{ siteNameChange }}</h4>
+    <a [href]="siteLinkChange" target="_blank" style="color: #535151;">{{ siteLinkChange }}</a>
   </div>
   
 
@@ -127,3 +166,8 @@
     </div>
   </div>
 </div>
+<br><br>
+<app-ux></app-ux>
+</div>
+<app-important-issues *ngIf="currentComponent === 'importantIssues'"></app-important-issues>
+<app-keyword-overview *ngIf="currentComponent === 'keywordIssues'"></app-keyword-overview>

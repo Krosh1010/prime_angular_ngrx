@@ -1,0 +1,186 @@
+<div class="container white-box">
+    <div class="row roww">
+        <div class="col-md-4">
+            <img src="https://saot.seolitte.com/static/media/speedometer.31c5f08dae86fdfa887d66b06bcaf095.svg"
+             alt="Claw Icon" style="transform: scale(1.1);">
+        </div>
+        <div class="col-md-4 my-text">
+            UX & Metrice de Performanță
+        </div>
+    </div>
+  </div>
+
+  <div *ngIf="seoData$ | async as seoData">
+    <div class="white-rectangle">
+    <div class="container">
+      <div class="info-section mb-4">
+        <img src="https://saot.seolitte.com/static/media/bookmark-ribbon-7790.ad4f33af067600430b341a7d19155b67.svg" 
+          style="transform: scale(1.3);">
+        <h4 class="info-title">
+          Vitale ale Webului de Bază
+        </h4>
+      </div>
+      <div class="row text-left rowww">
+        <!-- LCP Card -->
+        <div class="col-md-4 card p-3 mb-3 ">
+          <p class="metric-subtitle">Încărcare</p>
+          <h3 class="metric-title">LCP</h3>
+          <p class="metric-description">Largest Contentful Paint</p>
+          <div class="metric-bar-container">
+            <div class="metric-bar green" style="width: 33%;"></div>
+            <div class="metric-bar yellow" style="width: 33%;"></div>
+            <div class="metric-bar red" style="width: 34%;"></div>
+            <div class="indicator-wrapper" [style.left]="indicatorPositionLCP">
+              <div class="metric-indicator"></div>
+              <span class="indicator-text">{{ seoData.LCP }}s</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- SRT Card -->
+        <div class="col-md-4 card p-3 mb-3">
+          <p class="metric-subtitle">Interactivitate</p>
+          <h3 class="metric-title">SRT</h3>
+          <p class="metric-description">Timpul de Răspuns al Serverului</p>
+          <div class="metric-bar-container">
+            <div class="metric-bar green" style="width: 33%;"></div>
+            <div class="metric-bar yellow" style="width: 33%;"></div>
+            <div class="metric-bar red" style="width: 34%;"></div>
+            
+            <!-- Container pentru indicator și text -->
+            <div class="indicator-wrapper" [style.left]="indicatorPositionSRT">
+              <div class="metric-indicator"></div>
+              <span class="indicator-text">{{ seoData.SRT }}s</span>
+            </div>
+          </div>
+        </div>
+        
+        
+  
+        <!-- CLS Card -->
+        <div class="col-md-4 card p-3 mb-3">
+          <p class="metric-subtitle">Stabilitate Vizuală</p>
+          <h3 class="metric-title">CLS</h3>
+          <p class="metric-description">Migrarea Layout-ului Cumulativă</p>
+          <div class="metric-bar-container">
+            <div class="metric-bar green" style="width: 33%;"></div>
+            <div class="metric-bar yellow" style="width: 33%;"></div>
+            <div class="metric-bar red" style="width: 34%;"></div>
+            <div class="indicator-wrapper" [style.left]="indicatorPositionCLS">
+              <div class="metric-indicator"></div>
+              <span class="indicator-text">{{ seoData.CLS }}s</span>
+            </div>
+          </div>
+        </div>
+        <div class="container-text">
+          <div class="title-text">
+            Informații cheie despre metricele de performanță ale site-ului
+          </div>
+          <div class="content-text">
+            Aceste date, când sunt combinate, oferă o perspectivă profundă asupra performanței site-ului dvs. 
+            Ele ajută la evaluarea cât de repede utilizatorii văd conținutul critic (LCP), 
+            timpul de răspuns al serverului și stabilitatea aspectului paginii (CLS).
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+    <div class="metrics-container">
+      <!-- First Row -->
+      <div class="metric-item">
+        <div class="metric-left">
+          <div class="image-container">
+          <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+          <div class="text-overlay ">First Contentful Paint marchează momentul în care este pictat primul text sau imagine.</div>
+          <span class="metric-label">First Contentful Paint</span>
+        </div></div>
+        <div class="metric-right">
+          <span class="metric-value"
+          [ngClass]="getColor((seoData$ | async)?.FCP ?? 0)">  {{ (seoData$ | async)?.FCP }}s</span>
+          <span class="metric-icon warning-icon">{{ getIcon((seoData$ | async)?.FCP ?? 0) }}</span>
+        </div>
+      </div>
+    
+      <!-- Second Row -->
+      <div class="metric-item">
+        <div class="metric-left">
+          <div class="image-container">
+            <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+            <div class="text-overlay overlay-custom1">Indexul de Viteză arată cât de repede sunt populate vizual conținuturile unei pagini.</div>
+          <span class="metric-label">Indexul de Viteză</span>
+        </div></div>
+        <div class="metric-right">
+          <span class="metric-value"
+          [ngClass]="getColor((seoData$ | async)?.SI ?? 0)">  {{ (seoData$ | async)?.SI }}s</span>
+          <span class="metric-icon warning-icon">{{getIcon((seoData$ | async)?.SI ?? 0)}}</span>
+        </div>
+      </div>
+    
+      <!-- Third Row -->
+      <div class="metric-item">
+        <div class="metric-left">
+          <div class="image-container">
+          <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+          <div class="text-overlay overlay-custom2">Largest Contentful Paint marchează momentul în care cel mai mare text sau imagine este pictat.
+            </div>
+          <span class="metric-label">Largest Contentful Paint</span>
+        </div></div>
+        <div class="metric-right">
+          <span class="metric-value"
+          [ngClass]="getColor((seoData$ | async)?.LCP ?? 0)">  {{ (seoData$ | async)?.LCP }}s</span>
+          <span class="metric-icon error-icon">{{getIcon((seoData$ | async)?.LCP ?? 0)}}</span>
+        </div>
+      </div>
+    
+      <!-- Fourth Row -->
+      <div class="metric-item">
+        <div class="metric-left">
+          <div class="image-container">
+            <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+            <div class="text-overlay overlay-custom3">Timpul până la Interactivitate este perioada de timp necesară pentru pagina să devină complet interactivă.</div>
+          <span class="metric-label">Timp până la Interactivitate</span>
+        </div></div>
+        <div class="metric-right">
+          <span class="metric-value"
+          [ngClass]="getColor((seoData$ | async)?.TTI ?? 0)">  {{ (seoData$ | async)?.TTI }}s</span>
+          <span class="metric-icon warning-icon">{{getIcon((seoData$ | async)?.TTI ?? 0)}}</span>
+        </div>
+      </div>
+    
+      <!-- Fifth Row -->
+      <div class="metric-item">
+        <div class="metric-left">
+          <div class="image-container">
+            <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+            <div class="text-overlay overlay-custom4">Suma tuturor perioadelor de timp între FCP și Timpul până la Interactivitate, când durata sarcinii a depăşit 50 ms, exprimată în milisecunde.</div>
+          <span class="metric-label">Timpul Total de Blocare</span>
+        </div></div>
+        <div class="metric-right">
+          <span class="metric-value"
+          [ngClass]="getColor((seoData$ | async)?.TBT ?? 0)">  {{ (seoData$ | async)?.TBT }}s</span>
+          <span class="metric-icon success-icon">{{getIcon((seoData$ | async)?.TBT ?? 0)}}</span>
+        </div>
+      </div>
+    
+      <!-- Sixth Row -->
+      <div class="metric-item">
+        <div class="metric-right">
+          <div class="image-container">
+            <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+            <div class="text-overlay overlay-custom5">Migrarea Layout-ului Cumulativă măsoară mișcarea elementelor vizibile în cadrul vizual.</div>
+          <span class="metric-label">Migrarea Layout-ului Cumulativ</span>
+        </div></div>
+        <div class="metric-right">
+          <span class="metric-value"
+          [ngClass]="getColor((seoData$ | async)?.CLS ?? 0)">  {{ (seoData$ | async)?.CLS }}s</span>
+          <span class="metric-icon success-icon">{{getIcon((seoData$ | async)?.CLS ?? 0)}}</span>
+        </div>
+      </div>
+    </div>
+    
+  </div> 
+    
+  </div>
+<br><br>

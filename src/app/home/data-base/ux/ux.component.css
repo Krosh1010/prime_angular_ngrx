@@ -1,0 +1,291 @@
+
+.metric {
+    margin: 10px 0;
+  }
+  
+  .good {
+    color: green;
+  }
+  
+  .warning {
+    color: orange;
+  }
+  
+  .bad {
+    color: red;
+  }
+  .my-text {
+    margin-left: -415px;
+    color: rgb(80, 79, 79);
+    margin-top: 10px;
+    font-weight: bold; 
+    font-size: 18px;
+  }
+  .roww {
+  margin-left: -70px;  /* Ajustează valoarea pentru a muta structura mai la stânga */
+  }
+  .rowww{
+    margin-left: -40px;
+  }
+  .metric-title {
+  font-size: 2.2rem; /* Font mare, albastru */
+  color: #007bff;
+  font-weight: bold;
+  }
+  
+  .metric-subtitle {
+  font-size: 0.9rem;
+  color: #474d52;
+  margin-top: -10px; /* Reducere spațiu */
+  font-weight: bold;
+  }
+  .metric-description{
+    color: #474d52;
+  }
+  .metric-bar-container {
+    position: relative;
+    height: 5px;
+    width: 100%;
+    display: flex;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+  }
+  
+  .metric-bar.green {
+  background-color: #00c851;
+  }
+  
+  .metric-bar.yellow {
+  background-color: #ffbb33;
+  }
+  
+  .metric-bar.red {
+  background-color: #ff4444;
+  }
+  
+  .metric-indicator {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-30%); /* Centrează vertical */
+    width: 2px; /* Lățimea indicatorului */
+    height: 20px; /* Înălțime ajustată a indicatorului pentru a fi mai lung */
+    background-color: black;
+  }
+
+  .metric-bar-container {
+    position: relative;
+    height: 5px;
+    width: 100%;
+    display: flex;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+  }
+  
+  .indicator-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: -15px; /* Ajustează în funcție de poziția dorită */
+  }
+  
+  .metric-indicator {
+    width: 3px;
+    height: 20px;
+    background-color: black;
+  }
+  
+  .indicator-text {
+    margin-left: 10px; /* Distanța dintre indicator și text */
+    color: black;
+    margin-top: 25px;
+    font-size: 10px;
+  }
+  
+  .metric-value {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: black;
+  margin-top: 5px;
+  }
+  
+  .info-section {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px;
+  margin-left: -50px;
+  }
+  
+  .info-title {
+  color: #414242;
+  font-weight: bold;
+  font-size: 1.15rem;
+  margin: 0;
+  margin-left: 10px;
+  }
+  
+  .info-text {
+  color: #6c757d;
+  font-size: 0.95rem;
+  margin-left: 15px;
+  }
+  .metrics-container {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Crează 3 coloane de dimensiuni egale */
+    gap: 16px; /* Adaugă un spațiu între elemente */
+    margin: 0 auto; /* Centrează containerul în pagină */
+    
+  }
+  
+  .metric-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    align-items: center; /* Asigură alinierea verticală */
+    
+  }
+  
+
+  .metric-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .metric-label {
+    margin-left: 8px;
+    font-weight: bold;
+    color: #1f2d3d;
+  }
+  
+  .metric-right {
+    display: flex;
+    align-items: right;
+  }
+  
+  .metric-value {
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 8px;
+  }
+  
+  .metric-value.warning {
+    color: #e67e22;
+  }
+  
+  .metric-value.error {
+    color: #e74c3c;
+  }
+  
+  .metric-value.success {
+    color: #27ae60;
+  }
+  
+  .metric-icon {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  
+  .info-icon {
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 4px;
+  }
+  
+  .metric-icon.warning-icon {
+    color: #e67e22;
+  }
+  
+  .metric-icon.error-icon {
+    color: #e74c3c;
+  }
+  
+  .metric-icon.success-icon {
+    color: #27ae60;
+  }
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-24%, -50%);
+    background: rgba(10, 31, 223, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    width: 240px; /* Poți să ajustezi sau să schimbi în `200px` pentru o lățime fixă */
+    text-align: center;
+    word-wrap: break-word;
+    pointer-events: none;
+    display: inline-block; /* Asigură că fundalul se ajustează în funcție de text */
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .overlay-custom1 {
+    transform: translate(-18%, -50%);
+  }
+  .overlay-custom2 {
+    transform: translate(-29%, -50%);
+  }
+  .overlay-custom3 {
+    transform: translate(-34%, -50%);
+  }
+  .overlay-custom4 {
+    transform: translate(-27%, -50%);
+  }
+  .overlay-custom5 {
+    transform: translate(-41%, -50%);
+  }
+  
+  .image:hover + .text-overlay {
+    opacity: 1;
+  }
+  .white-rectangle {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 1420px; /* Ajustează dimensiunea maximă după cum dorești */
+  }
+  
+  .col-md-4.card {
+    border: none; /* Elimină orice margine */
+    box-shadow: none; /* Elimină umbrele */
+    padding: 0; /* Ajustează padding-ul dacă este necesar */
+    background-color: transparent; /* Fără fundal */
+    margin: 0; /* Fără margini */
+    width: 270px;
+  }
+  .container-text{
+    width: 450px;
+    height: 150px;
+  border-top: 5px solid transparent; /* Latura de sus vizibilă */
+  border-left: 1px solid #414242; /* Laturi invizibile */
+  border-right: 5px solid transparent; 
+  border-bottom: 5px solid transparent;
+  overflow: hidden;
+  margin-left: 10px;
+  }
+  .title-text{
+    font-size: 17px;
+    font-weight: bold;
+    margin-left: 15px;
+  }
+  .content-text{
+    font-size: 13px;
+    color: #474d52;
+    margin-left: 15px;
+    margin-top: 10px;
+  }
+  

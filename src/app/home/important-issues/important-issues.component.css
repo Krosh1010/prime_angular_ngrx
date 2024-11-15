@@ -1,0 +1,38 @@
+.seo-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    padding: 1rem;
+    background-color: #f7f9fc;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .seo-previeww {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 8px;
+  }
+  
+  .seo-text-content {
+    margin-left: 21px;
+    margin-right: auto;
+  }
+  
+  .site-name {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .important-issues-text {
+    font-size: 33px;
+    color: rgb(111, 111, 236);
+    font-weight: bold;
+    margin-left: 820px;  /* Ajustează pentru a muta mai aproape de marginea stângă */
+    flex-grow: 1;  /* Permite textului să ocupe spațiu disponibil */
+    text-align: left;  /* Asigură alinierea textului la stânga */
+  }
+  
