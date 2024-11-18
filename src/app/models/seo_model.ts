@@ -5,15 +5,23 @@ export interface SEOData {
     jsStart: number;
     interactive: number;
     mobile: number;
-    seoScore: number;
+    seoScoreD: number;
     imageURL: string;
     imageURLL: string;
-    LCP: number;
-    SRT: number;
-    CLS: number;
-    FCP: number;
-    SI: number;
-    TTI: number;
-    TBT: number;
+    LCPd: number;
+    SRTd: number;
+    CLSd: number;
+    FCPd: number;
+    SId: number;
+    TTId: number;
+    TBTd: number;
+    LCPp: number;
+    SRTp: number;
+    CLSp: number;
+    FCPp: number;
+    SIp: number;
+    TTIp: number;
+    TBTp: number;
+    seoScoreP: number;
   }
   

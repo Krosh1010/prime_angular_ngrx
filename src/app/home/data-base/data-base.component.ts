@@ -29,7 +29,7 @@ export class DataBaseComponent implements OnInit, OnDestroy {
   chart: Chart | null = null;
   private seoDataSubscription: Subscription | null = null;
   doughnutChart: Chart | null = null;
-  seoScore: number = 0;
+  seoScoreD: number = 0;
   countryCodes: { code: string; name: string; flag: string }[] = [];
   selectedCountryCode: string = '+373';
   phoneNumber: string = '';
@@ -153,8 +153,8 @@ export class DataBaseComponent implements OnInit, OnDestroy {
     if (this.doughnutChart) {
       this.doughnutChart.destroy(); // Distruge graficul anterior, dacă există
     }
-    this.seoScore = data.seoScore ?? 0;
-    this.doughnutChartService.createDoughnutChart(ctx, this.seoScore);
+    this.seoScoreD = data.seoScoreD ?? 0;
+    this.doughnutChartService.createDoughnutChart(ctx, this.seoScoreD);
   }
 
   createRadarChart(data: SEOData): void {

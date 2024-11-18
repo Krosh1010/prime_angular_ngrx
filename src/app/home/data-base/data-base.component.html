@@ -1,4 +1,4 @@
-
+<div style="margin-top: 50px;">
 <div class="nav-bar mt-5" >
   <div class="d-flex justify-content-between align-items-center border-bottom pb-2 position-relative">
     <!-- Navigation Buttons, using margin-left to move to the right -->
@@ -32,7 +32,7 @@
       class="btn btn-link text-secondary d-flex align-items-center" 
       (click)="copyLink()"
       style="margin-right: 50px;">
-      <i class="bi bi-clipboard me-1"></i> Copiați linkul pentru partajare
+      <i class="bi bi-text-paragraph me-1"></i> Copiați linkul pentru partajare
     </button>
   </div>
 </div>
@@ -129,7 +129,7 @@
       <span class="badge bg-success">76-100</span>
     </div> <br> <br><br>
     <p class="text-center">
-      Viteza paginii dvs. este de {{ seoScore }}% din optim.
+      Viteza paginii dvs. este de {{ seoScoreD }}% din optim.
     </p>
   </div>
   <div class="seo-image-container text-center my-3 card"><div class="text-center"><h4 class="text-center"> Previzualizare site</h4> <br>
@@ -171,3 +171,4 @@
 </div>
 <app-important-issues *ngIf="currentComponent === 'importantIssues'"></app-important-issues>
 <app-keyword-overview *ngIf="currentComponent === 'keywordIssues'"></app-keyword-overview>
+</div>

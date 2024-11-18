@@ -16,6 +16,7 @@ import { NgStyle, CommonModule} from '@angular/common';
 export class UxComponent implements OnInit {
   seoData$: Observable<SEOData | null>;
   seoData: SEOData | null = null; // Stocăm datele locale
+  selectedOption: 'desktop' | 'phone' = 'desktop'; // Opțiunea selectată implicit
 
   constructor(private store: Store) {
     this.seoData$ = this.store.pipe(select(selectSEOData));
@@ -57,7 +58,7 @@ export class UxComponent implements OnInit {
 
     const maxSRT = 0.25; // Valoarea maximă de referință pentru 100%
     const maxWidth = 235; // Lățimea totală a barei, folosită în stilul CSS
-    const position = (this.seoData.SRT / maxSRT) * maxWidth;
+    const position = (this.seoData.SRTd / maxSRT) * maxWidth;
 
     return Math.min(position, maxWidth) + 'px'; 
   }
@@ -66,7 +67,7 @@ export class UxComponent implements OnInit {
 
     const maxSRT = 1; // Valoarea maximă de referință pentru 100%
     const maxWidth = 235; // Lățimea totală a barei, folosită în stilul CSS
-    const position = (this.seoData.CLS / maxSRT) * maxWidth;
+    const position = (this.seoData.CLSd / maxSRT) * maxWidth;
 
     return Math.min(position, maxWidth) + 'px'; 
     
@@ -76,9 +77,12 @@ export class UxComponent implements OnInit {
 
     const maxSRT = 5.5; // Valoarea maximă de referință pentru 100%
     const maxWidth = 235; // Lățimea totală a barei, folosită în stilul CSS
-    const position = (this.seoData.LCP / maxSRT) * maxWidth;
+    const position = (this.seoData.LCPd / maxSRT) * maxWidth;
 
     return Math.min(position, maxWidth) + 'px'; 
+  }
+  selectOption(option: 'desktop' | 'phone') {
+    this.selectedOption = option;
   }
 
 }

@@ -1,12 +1,30 @@
-<div class="container white-box">
+<div class="containerr">
     <div class="row roww">
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-left: 115px;">
             <img src="https://saot.seolitte.com/static/media/speedometer.31c5f08dae86fdfa887d66b06bcaf095.svg"
              alt="Claw Icon" style="transform: scale(1.1);">
         </div>
         <div class="col-md-4 my-text">
             UX & Metrice de Performanță
         </div>
+        <div class="toggle-btn" [attr.data-selected]="selectedOption">
+          <div
+            class="toggle-option"
+            [class.selected]="selectedOption === 'desktop'"
+            (click)="selectOption('desktop')"
+          >
+            <i>🖥️</i> Desktop
+          </div>
+          <div
+            class="toggle-option"
+            [class.selected]="selectedOption === 'phone'"
+            (click)="selectOption('phone')"
+          >
+            <i>📱</i> Phone
+          </div>
+        </div>
+        
+               
     </div>
   </div>
 
@@ -32,7 +50,7 @@
             <div class="metric-bar red" style="width: 34%;"></div>
             <div class="indicator-wrapper" [style.left]="indicatorPositionLCP">
               <div class="metric-indicator"></div>
-              <span class="indicator-text">{{ seoData.LCP }}s</span>
+              <span class="indicator-text">{{ seoData.LCPd }}s</span>
             </div>
           </div>
         </div>
@@ -50,7 +68,7 @@
             <!-- Container pentru indicator și text -->
             <div class="indicator-wrapper" [style.left]="indicatorPositionSRT">
               <div class="metric-indicator"></div>
-              <span class="indicator-text">{{ seoData.SRT }}s</span>
+              <span class="indicator-text">{{ seoData.SRTd }}s</span>
             </div>
           </div>
         </div>
@@ -68,7 +86,7 @@
             <div class="metric-bar red" style="width: 34%;"></div>
             <div class="indicator-wrapper" [style.left]="indicatorPositionCLS">
               <div class="metric-indicator"></div>
-              <span class="indicator-text">{{ seoData.CLS }}s</span>
+              <span class="indicator-text">{{ seoData.CLSd }}s</span>
             </div>
           </div>
         </div>
@@ -84,9 +102,7 @@
         </div>
       </div>
     </div>
-  
-  
-  
+  <br>
     <div class="metrics-container">
       <!-- First Row -->
       <div class="metric-item">
@@ -98,8 +114,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.FCP ?? 0)">  {{ (seoData$ | async)?.FCP }}s</span>
-          <span class="metric-icon warning-icon">{{ getIcon((seoData$ | async)?.FCP ?? 0) }}</span>
+          [ngClass]="getColor((seoData$ | async)?.FCPd ?? 0)">  {{ (seoData$ | async)?.FCPd }}s</span>
+          <span class="metric-icon warning-icon">{{ getIcon((seoData$ | async)?.FCPd ?? 0) }}</span>
         </div>
       </div>
     
@@ -113,8 +129,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.SI ?? 0)">  {{ (seoData$ | async)?.SI }}s</span>
-          <span class="metric-icon warning-icon">{{getIcon((seoData$ | async)?.SI ?? 0)}}</span>
+          [ngClass]="getColor((seoData$ | async)?.SId ?? 0)">  {{ (seoData$ | async)?.SId }}s</span>
+          <span class="metric-icon warning-icon">{{getIcon((seoData$ | async)?.SId ?? 0)}}</span>
         </div>
       </div>
     
@@ -129,8 +145,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.LCP ?? 0)">  {{ (seoData$ | async)?.LCP }}s</span>
-          <span class="metric-icon error-icon">{{getIcon((seoData$ | async)?.LCP ?? 0)}}</span>
+          [ngClass]="getColor((seoData$ | async)?.LCPd ?? 0)">  {{ (seoData$ | async)?.LCPd }}s</span>
+          <span class="metric-icon error-icon">{{getIcon((seoData$ | async)?.LCPd ?? 0)}}</span>
         </div>
       </div>
     
@@ -144,8 +160,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.TTI ?? 0)">  {{ (seoData$ | async)?.TTI }}s</span>
-          <span class="metric-icon warning-icon">{{getIcon((seoData$ | async)?.TTI ?? 0)}}</span>
+          [ngClass]="getColor((seoData$ | async)?.TTId ?? 0)">  {{ (seoData$ | async)?.TTId }}s</span>
+          <span class="metric-icon warning-icon">{{getIcon((seoData$ | async)?.TTId ?? 0)}}</span>
         </div>
       </div>
     
@@ -159,8 +175,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.TBT ?? 0)">  {{ (seoData$ | async)?.TBT }}s</span>
-          <span class="metric-icon success-icon">{{getIcon((seoData$ | async)?.TBT ?? 0)}}</span>
+          [ngClass]="getColor((seoData$ | async)?.TBTd ?? 0)">  {{ (seoData$ | async)?.TBTd }}s</span>
+          <span class="metric-icon success-icon">{{getIcon((seoData$ | async)?.TBTd ?? 0)}}</span>
         </div>
       </div>
     
@@ -174,8 +190,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.CLS ?? 0)">  {{ (seoData$ | async)?.CLS }}s</span>
-          <span class="metric-icon success-icon">{{getIcon((seoData$ | async)?.CLS ?? 0)}}</span>
+          [ngClass]="getColor((seoData$ | async)?.CLSd ?? 0)">  {{ (seoData$ | async)?.CLSd }}s</span>
+          <span class="metric-icon success-icon">{{getIcon((seoData$ | async)?.CLSd ?? 0)}}</span>
         </div>
       </div>
     </div>

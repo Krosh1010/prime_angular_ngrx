@@ -1,5 +1,5 @@
 /* Asigură-te că întregul document ocupă 100% din înălțime */
-html, body {
+ body {
     height: 100%;
     margin: 0;
   }
@@ -23,6 +23,6 @@ html, body {
     padding: 1rem 0; /* Padding pentru footer */
     width: 100%; /* Asigură că ocupă întreaga lățime */
   }
-  @import "~bootstrap-icons/font/bootstrap-icons.css";
+ 
 
   
