@@ -15,6 +15,7 @@ import { UxComponent } from "./ux/ux.component";
 import { ImportantIssuesComponent } from '../important-issues/important-issues.component';
 import { KeywordOverviewComponent } from '../keyword-overview/keyword-overview.component';
 import { LinkService } from '../../services/link.service';
+import { ModalService } from '../../services/desktop-phone.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class DataBaseComponent implements OnInit, OnDestroy {
   private seoDataSubscription: Subscription | null = null;
   doughnutChart: Chart | null = null;
   seoScoreD: number = 0;
+  seoScoreP: number = 0;
   countryCodes: { code: string; name: string; flag: string }[] = [];
   selectedCountryCode: string = '+373';
   phoneNumber: string = '';
@@ -40,14 +42,18 @@ export class DataBaseComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   @Input() siteLinkChange: string = ''; // Link-ul primit din HomeComponent
   @Input() siteNameChange: string = ''; // Denumirea site-ului
-
+  private modalSubscription: Subscription | null = null;
+  private modeSubscription: Subscription | null = null;
+  showModal: boolean = false;
+  currentMode: 'desktop' | 'phone' = 'desktop'; // Mod default
 
   constructor(
     private store: Store,
     private doughnutChartService: DoughnutChartService,
     private radarChartService: RadarChartService,
     private http: HttpClient,
-    private linkService: LinkService
+    private linkService: LinkService,
+    private modalService: ModalService
   ) {
     this.seoData$ = this.store.select(selectSEOData);
   }
@@ -66,11 +72,30 @@ export class DataBaseComponent implements OnInit, OnDestroy {
     this.store.dispatch(loadSEOData());
 
     this.seoDataSubscription = this.seoData$.subscribe(data => {
+      console.log(data);
       if (data) {
+        this.seoScoreD = data.seoScoreD || 0;
+        this.seoScoreP = data.seoScoreP || 0;
+        // Generăm graficele inițial, în funcție de modul curent
         this.createRadarChart(data);
         this.createDoughnutChart(data);
       }
     });
+    // Abonare la schimbarea modului
+    this.modeSubscription = this.modalService.mode$.subscribe(mode => {
+      this.currentMode = mode;
+      // Re-creează graficele cu datele existente
+      this.seoDataSubscription?.unsubscribe();
+      this.seoDataSubscription = this.seoData$.subscribe(data => {
+        if (data) {
+          this.seoScoreD = data.seoScoreD || 0;
+          this.seoScoreP = data.seoScoreP || 0;
+          this.createRadarChart(data);
+          this.createDoughnutChart(data);
+        }
+      });
+    }); 
+    
 
     this.http.get<any[]>('https://restcountries.com/v3.1/all').subscribe(data => {
       this.countryCodes = data.map(country => ({
@@ -139,6 +164,8 @@ export class DataBaseComponent implements OnInit, OnDestroy {
       this.doughnutChart.destroy();
     }
     this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.modalSubscription?.unsubscribe();
+    this.modeSubscription?.unsubscribe();
   }
 
   getColor(value: number | undefined | null): string {
@@ -150,12 +177,17 @@ export class DataBaseComponent implements OnInit, OnDestroy {
 
   createDoughnutChart(data: SEOData): void {
     const ctx = document.getElementById('seoDoughnutChart') as HTMLCanvasElement;
+    // Distruge graficul existent dacă este deja creat
     if (this.doughnutChart) {
-      this.doughnutChart.destroy(); // Distruge graficul anterior, dacă există
+      this.doughnutChart.destroy();
     }
-    this.seoScoreD = data.seoScoreD ?? 0;
-    this.doughnutChartService.createDoughnutChart(ctx, this.seoScoreD);
+    // Selectează scorul SEO corect în funcție de modul curent
+    const currentSeoScore = this.currentMode === 'desktop' ? data.seoScoreD : data.seoScoreP;
+    // Creează un grafic nou cu scorul selectat
+    this.doughnutChart = this.doughnutChartService.createDoughnutChart(ctx, currentSeoScore);
   }
+  
+  
 
   createRadarChart(data: SEOData): void {
     const ctx = document.getElementById('seoRadarChart') as HTMLCanvasElement;
@@ -172,5 +204,11 @@ export class DataBaseComponent implements OnInit, OnDestroy {
     this.currentComponent = component;
     localStorage.setItem('currentComponent', component);
   }
+  getSeoScore(): number {
+    const score = this.currentMode === 'desktop' ? this.seoScoreD : this.seoScoreP;
+    console.log('Scor SEO returnat:', score);
+    return score;
+  }
+  
 
 }

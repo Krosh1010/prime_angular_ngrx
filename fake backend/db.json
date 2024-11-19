@@ -5,7 +5,7 @@
     "jsStart": 1,
     "interactive": 85,
     "mobile": 10,
-    "seoScoreD": 90,
+    "seoScoreD": 80,
     "imageURL": "https://tlum.ru/uploads/d6d38ebcf8548d81eb1f4dc3a54ed4d62f98301b8418d226ad19c2ccb440f412.jpeg",
     "imageURLL": "https://i.pinimg.com/originals/44/27/61/442761f2d191c0ea7511c73bd2e29e68.jpg",
     "LCPd": 1.5,
@@ -15,14 +15,14 @@
     "SId": 6,
     "TTId": 6,
     "TBTd": 6,
-    "LCPp": 1.5,
-    "SRTp": 0.2,
-    "CLSp": 0.01,
-    "FCPp": 6,
-    "SIp": 6,
-    "TTIp": 6,
-    "TBTp": 6,
-    "seoScoreP": 90
+    "LCPp": 1.7,
+    "SRTp": 0.3,
+    "CLSp": 0.1,
+    "FCPp": 5,
+    "SIp": 5,
+    "TTIp": 5,
+    "TBTp": 5,
+    "seoScoreP": 40
   },
   "users": [
     {

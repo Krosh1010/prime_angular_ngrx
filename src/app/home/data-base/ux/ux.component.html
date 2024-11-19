@@ -50,7 +50,7 @@
             <div class="metric-bar red" style="width: 34%;"></div>
             <div class="indicator-wrapper" [style.left]="indicatorPositionLCP">
               <div class="metric-indicator"></div>
-              <span class="indicator-text">{{ seoData.LCPd }}s</span>
+              <span class="indicator-text">{{ getMetricValue('LCP') }}s</span>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
             <!-- Container pentru indicator și text -->
             <div class="indicator-wrapper" [style.left]="indicatorPositionSRT">
               <div class="metric-indicator"></div>
-              <span class="indicator-text">{{ seoData.SRTd }}s</span>
+              <span class="indicator-text">{{ getMetricValue('SRT') }}s</span>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@
             <div class="metric-bar red" style="width: 34%;"></div>
             <div class="indicator-wrapper" [style.left]="indicatorPositionCLS">
               <div class="metric-indicator"></div>
-              <span class="indicator-text">{{ seoData.CLSd }}s</span>
+              <span class="indicator-text">{{ getMetricValue('CLS') }}s</span>
             </div>
           </div>
         </div>
@@ -114,8 +114,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.FCPd ?? 0)">  {{ (seoData$ | async)?.FCPd }}s</span>
-          <span class="metric-icon warning-icon">{{ getIcon((seoData$ | async)?.FCPd ?? 0) }}</span>
+          [ngClass]="getMetricColor('FCP')">  {{getMetricValue('FCP') }}s</span>
+          <span class="metric-icon warning-icon">{{ getMetricIcon('FCP') }}</span>
         </div>
       </div>
     
@@ -129,8 +129,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.SId ?? 0)">  {{ (seoData$ | async)?.SId }}s</span>
-          <span class="metric-icon warning-icon">{{getIcon((seoData$ | async)?.SId ?? 0)}}</span>
+          [ngClass]="getMetricColor('SI')">  {{getMetricValue('SI') }}s</span>
+          <span class="metric-icon warning-icon">{{getMetricIcon('SI')}}</span>
         </div>
       </div>
     
@@ -145,8 +145,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.LCPd ?? 0)">  {{ (seoData$ | async)?.LCPd }}s</span>
-          <span class="metric-icon error-icon">{{getIcon((seoData$ | async)?.LCPd ?? 0)}}</span>
+          [ngClass]="getMetricColor('LCP')">  {{getMetricValue('LCP') }}s</span>
+          <span class="metric-icon error-icon">{{getMetricIcon('LCP')}}</span>
         </div>
       </div>
     
@@ -160,8 +160,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.TTId ?? 0)">  {{ (seoData$ | async)?.TTId }}s</span>
-          <span class="metric-icon warning-icon">{{getIcon((seoData$ | async)?.TTId ?? 0)}}</span>
+          [ngClass]="getMetricColor('TTI')">  {{getMetricValue('TTI') }}s</span>
+          <span class="metric-icon warning-icon">{{getMetricIcon('TTI')}}</span>
         </div>
       </div>
     
@@ -175,8 +175,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.TBTd ?? 0)">  {{ (seoData$ | async)?.TBTd }}s</span>
-          <span class="metric-icon success-icon">{{getIcon((seoData$ | async)?.TBTd ?? 0)}}</span>
+          [ngClass]="getMetricColor('TBT')">  {{getMetricValue('TBT') }}s</span>
+          <span class="metric-icon success-icon">{{getMetricIcon('TBT')}}</span>
         </div>
       </div>
     
@@ -190,8 +190,8 @@
         </div></div>
         <div class="metric-right">
           <span class="metric-value"
-          [ngClass]="getColor((seoData$ | async)?.CLSd ?? 0)">  {{ (seoData$ | async)?.CLSd }}s</span>
-          <span class="metric-icon success-icon">{{getIcon((seoData$ | async)?.CLSd ?? 0)}}</span>
+          [ngClass]="getMetricColor('CLS')">  {{getMetricValue('CLS') }}s</span>
+          <span class="metric-icon success-icon">{{getMetricIcon('CLS')}}</span>
         </div>
       </div>
     </div>
