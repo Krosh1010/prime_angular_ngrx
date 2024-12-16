@@ -9,3 +9,156 @@
     </div>
 </div>
 <br>
+
+<div class="cards-container" >
+  <div class="card">
+    <div class="card-left"></div>
+    <div class="card-content">
+      <p class="card-title">Vizibilitate</p>
+      <p class="card-value">{{ (seoData$ | async)?.Vizibilitate  }}</p>
+    </div>
+    <div class="card-info-container">
+      <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+      <div class="text-overlay">Vizibilitatea unui domeniu în top 20 Google. Este un indicator relativ, calculat ca raport între cantitatea și popularitatea cuvintelor cheie pentru care un domeniu este afișat.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-left"></div>
+    <div class="card-content">
+      <p class="card-title">Trafic de căutare estimat</p>
+      <p class="card-value">{{ (seoData$ | async)?.Trafic  }}</p>
+    </div>
+    <div class="card-info-container v2">
+      <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+      <div class="text-overlay">Numărul de vizitatori pe lună din motorul de căutare Google. Această cifră este una aproximativă și poate diferi de traficul real. Calculul traficului SE Serpstat se bazează pe CTR (Click Through Rate). Luăm în considerare pozițiile în SERP și volumele de cuvinte cheie. Graficul de mai jos arată statistici privind traficul unui site pentru un anumit perioadă (în ultimul an sau de la prima sa apariție în baza de date Serpstat).</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-left"></div>
+    <div class="card-content">
+      <p class="card-title">Cuvinte cheie organice</p>
+      <p class="card-value">{{ (seoData$ | async)?.CuvinteOrganice  }}</p>
+    </div>
+    <div class="card-info-container v3">
+      <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+      <div class="text-overlay">Numărul de cuvinte cheie organice pentru care un domeniu analizat se află în primele 100 de rezultate Google.</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-left"></div>
+    <div class="card-content">
+      <p class="card-title">Cuvinte cheie plătite</p>
+      <p class="card-value">{{ (seoData$ | async)?.CuvintePlatite  }}</p>
+    </div>
+    <div class="card-info-container v4 ">
+      <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+      <div class="text-overlay">Numărul de cuvinte cheie pentru care domeniul dat oferă licitații în Google Ads.</div>
+    </div>
+  </div>
+ 
+</div>
+<br>
+<div class="container-parent">
+  <div class="item">
+    <div class="text-blue v3" style="margin-left: 0px;">
+      Cuvinte cheie organice
+      <div class="card-info-container v1 v5" style="left: 0%; top: 8%;">
+        <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image"  >
+        <div class="text-overlay">Numărul de cuvinte cheie organice pentru care un domeniu analizat se află în primele 100 de rezultate Google.</div>
+      </div>
+    </div>
+    <div class="container-cuvinte"></div>
+  </div>
+  <div class="item">
+    <div class="text-blue v3" style="margin-left: 0px;">
+      Distribuția pozițiilor cuvintelor cheie
+      <div class="card-info-container v1 v6" style="left: 0%; top: 8%">
+        <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image"  >
+        <div class="text-overlay">Acest grafic arată numărul de cuvinte cheie pentru care domeniul se clasifică în primele 1, primele 3, primele 5, primele 10, primele 20, primele 50 și primele 100 rezultate de căutare Google.</div>
+      </div>
+    </div>
+    <div class="container-distribut"></div>
+  </div>
+</div>
+
+<br>
+<div class="title-container">
+  <div class="text-blue v2">
+    Prezentare generală a backlink-urilor
+  </div>
+  <div class="card-info-container v1 v7" style="left: 0; margin-top: 5px;">
+    <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+    <div class="text-overlay">Acest raport oferă informații generale despre modulul de analiză a backlink-urilor: domenii și subdomenii referitoare, backlink-uri care duc la domeniul analizat, paginile principale referitoare, adresele IP și subrețelele, precum și indicatorul unic al autorității domeniului. Serpstat folosește un algoritm de calcul accelerat, astfel că datele pot diferi ușor de rezultatele din rapoartele detaliate.</div>
+  </div>
+  </div>
+<div class="container-backlink">
+  <div class="box">
+    <h4>SDR</h4>
+    <p>Serpstat Domain Rank este un indicator al autorității domeniului pe o scară de la 0 la 100.</p>
+  </div>
+  <div class="box">
+    <div class="title-container">
+      <p class="title">Domenii referitoare</p>
+      <div class="card-info-container v1 v7" style="left: 0;">
+        <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+        <div class="text-overlay">Numărul de domenii referitoare, inclusiv subdomenii ale platformelor de blogging (Blogspot, WordPress). Datele pot diferi ușor de valoarea exactă din raportul detaliat. Domeniile de redirecționare sunt domeniile care redirecționează complet către domeniul analizat. Domeniile malițioase sunt domenii pe care Google nu recomandă să le vizitați și blochează cu o notificare. Se utilizează un algoritm de verificare similar cu cel folosit de Google.</div>
+      </div>
+    </div>
+    <p>redirecționare</p>
+    <p>malițios</p>
+    <p>Subrețele IP</p>
+  </div>
+  <div class="box">
+    <div class="title-container">
+    <p class="title">Backlink-uri</p>
+    <div class="card-info-container v1 v8" style="left: 0;">
+      <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+      <div class="text-overlay">Numărul de legături către un domeniu principal sau URL. Rezultatul poate diferi uşor de valoarea exactă din raportul detaliat. Mai jos este indicat câte dintre ele sunt plasate pe paginile principale ale domeniilor referitoare.</div>
+    </div>
+  </div>
+    <p>de pe paginile principale</p>
+    <p>urmaresc (follow)</p>
+    <p>nu urmaresc (nofollow)</p>
+  </div>
+  <div class="box">
+    <div class="title-container">
+      <p class="title" >Domenii externe</p>
+      <div class="card-info-container v1 v8" style="left: 0;">
+        <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+        <div class="text-overlay">Numărul de domenii către care se face referire de pe site-ul analizat. Aici intră domeniile pe care Google nu le recomandă să le vizitați și blochează cu o notificare. Se utilizează un algoritm de verificare similar cu cel folosit de Google.</div>
+      </div>
+    </div>
+    <p>malițios</p>
+    <p>ulegături externe</p>
+    <br>
+  </div>
+</div>
+<br>
+<div class="title-container">
+<div class="text-blue v2">
+  Tendința vizibilă
+</div>
+<div class="card-info-container v1 v8" style="left: 0; margin-top: 5px;">
+  <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+  <div class="text-overlay">Vizibilitatea unui domeniu în top 20 Google. Este un indicator relativ, calculat ca raport între cantitatea și popularitatea cuvintelor cheie pentru care un domeniu este afișat.</div>
+</div>
+</div>
+<div class="container-TV">
+
+</div>
+<br>
+<div class="title-container">
+<div class="text-blue v2">
+  Tendința traficului
+</div>
+<div class="card-info-container v1 v9" style="left: 0; margin-top: 5px;">
+  <img src="https://saot.seolitte.com/static/media/icons8-info%20(1).f186831694c84b01f1f044ad53e662db.svg" alt="Icon" class="image">
+  <div class="text-overlay">Numărul de vizitatori pe lună din motorul de căutare Google. Această cifră este una aproximativă și poate diferi de traficul real. Calculul traficului SE Serpstat se bazează pe CTR (Click Through Rate). Luăm în considerare pozițiile în SERP și volumele de cuvinte cheie. Graficul de mai jos arată statistici privind traficul unui site pentru un anumit perioadă (în ultimul an sau de la prima sa apariție în baza de date Serpstat).</div>
+</div>
+</div>
+<div class="container-TV">
+</div>
+<br><br>

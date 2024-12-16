@@ -5,6 +5,7 @@ import { SEOData } from '../../models/seo_model';
 import { selectSEOData } from '../../store/selectors/seo.selectors';
 import { NgIf, CommonModule } from '@angular/common';
 import { LinkService } from '../../services/link.service';
+import * as SEOActions from '../../store/actions/seo.action';
 
 @Component({
   selector: 'app-keyword-overview',
@@ -18,6 +19,8 @@ export class KeywordOverviewComponent {
   private subscriptions: Subscription[] = [];
   @Input() siteLinkChange: string = ''; // Link-ul primit din HomeComponent
   @Input() siteNameChange: string = ''; // Denumirea site-ului
+  seoData: SEOData | null = null; // Stocăm datele locale
+  
 
   constructor(
     private store: Store,
@@ -34,6 +37,8 @@ export class KeywordOverviewComponent {
         this.siteNameChange = name;
       })
     );
+      // Dispatch action to load SEO data when the component initializes
+      this.store.dispatch(SEOActions.loadSEOData());
   }
   updateSiteData(name: string, link: string): void {
     this.siteNameChange = name;
@@ -41,4 +46,5 @@ export class KeywordOverviewComponent {
     localStorage.setItem('siteNameChange', this.siteNameChange);
     localStorage.setItem('siteLinkChange', this.siteLinkChange);
   }
+  
 }

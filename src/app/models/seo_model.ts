@@ -23,6 +23,10 @@ export interface SEOData {
     TTIp: number;
     TBTp: number;
     seoScoreP: number;
-    [key: string]: string | number
+    [key: string]: string | number;
+    Vizibilitate: number;
+    Trafic: number;
+    CuvinteOrganice: number;
+    CuvintePlatite: number;
   }
   
